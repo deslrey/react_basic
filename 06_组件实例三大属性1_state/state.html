@@ -18,21 +18,29 @@
 <script type="text/babel">
 
     class Weather extends React.Component {
-
+        // 构造器调用几次? --- 一次
         constructor(props) {
+            console.log('constructor');
+
             super(props)
             // 初始化状态
-            this.state = { isHot: true }
+            this.state = { isHot: true, wind: '微风' }
             // 解决 changeWeather 中的 this 指向问题
             this.changeWeather = this.changeWeather.bind(this)
         }
 
+        // render 调用几次？ ------ 1 + n 次
         render() {
-            return <h1 onClick={this.changeWeather}>今天天气很{this.state.isHot ? '炎热' : '凉爽'}</h1>
+            console.log('render');
+            const { isHot, wind } = this.state
+            return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'},{wind}</h1>
         }
 
+        // changeWeather 调用几次？ ------ 点击多少次调用多少次
         changeWeather() {
-            console.log(this);
+            console.log('render');
+            const state = this.state.isHot
+            this.setState({ isHot: !state })
         }
     }
 
