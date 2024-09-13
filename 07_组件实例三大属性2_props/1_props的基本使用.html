@@ -36,7 +36,10 @@
 
     ReactDOM.render(<Person name="张三" age="18" sex="男" />, document.getElementById('test1'))
     ReactDOM.render(<Person name="李四" age="19" sex="女" />, document.getElementById('test2'))
-    ReactDOM.render(<Person name="王二" age="20" sex="男" />, document.getElementById('test3'))
+
+    const p = { name: '王二', age: 20, sex: '男' }
+
+    ReactDOM.render(<Person {...p} />, document.getElementById('test3'))
 </script>
 
 </html>
