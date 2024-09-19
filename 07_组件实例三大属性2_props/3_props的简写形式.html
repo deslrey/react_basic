@@ -22,6 +22,20 @@
 
     class Person extends React.Component {
 
+        // 对标签属性进行限制,必要性的限制
+        static propsTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number,
+            sex: PropTypes.string,
+            speak: PropTypes.func
+        }
+
+        // 指定默认标签属性值
+        static defaultProps = {
+            age: 18,
+            sex: '不男不女'
+        }
+
         render() {
             const { name, sex, age } = this.props
             // this.props.name = "李四" //  props是只读的,不能就行修改,只能就行运算
@@ -34,22 +48,6 @@
             )
         }
     }
-
-    // 对标签属性进行限制,必要性的限制
-    Person.propsTypes = {
-        name: PropTypes.string.isRequired,
-        age: PropTypes.number,
-        sex: PropTypes.string,
-        speak: PropTypes.func
-    }
-
-    // 指定默认标签属性值
-    Person.defaultProps = {
-        age: 18,
-        sex: '不男不女'
-    }
-
-
 
     ReactDOM.render(<Person name="张三" age={18} sex="男" speak={speak} />, document.getElementById('test1'))
     ReactDOM.render(<Person name="李四" age={19} sex="女" />, document.getElementById('test2'))
