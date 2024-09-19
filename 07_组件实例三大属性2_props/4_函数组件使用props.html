@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数组件使用Props</title>
+</head>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+
+<body>
+    <div id="test1"></div>
+</body>
+
+<script type="text/babel">
+
+    /*     class Person extends React.Component {
+    
+            // 对标签属性进行限制,必要性的限制
+            static propsTypes = {
+                name: PropTypes.string.isRequired,
+                age: PropTypes.number,
+                sex: PropTypes.string,
+                speak: PropTypes.func
+            }
+    
+            // 指定默认标签属性值
+            static defaultProps = {
+                age: 18,
+                sex: '不男不女'
+            }
+    
+            render() {
+                const { name, sex, age } = this.props
+                // this.props.name = "李四" //  props是只读的,不能就行修改,只能就行运算
+                return (
+                    <ul>
+                        <li>姓名: {name}</li>
+                        <li>性别: {sex}</li>
+                        <li>年龄: {age + 1}</li>
+                    </ul>
+                )
+            }
+        } */
+
+    // 函数组件
+    function Person(props) {
+
+        const { name, sex, age } = props
+
+        return (
+            <ul>
+                <li>姓名: {name}</li>
+                <li>性别: {sex}</li>
+                <li>年龄: {age + 1}</li>
+            </ul>
+        )
+
+    }
+
+    // 对标签属性进行限制,必要性的限制
+    Person.propsTypes = {
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number,
+        sex: PropTypes.string,
+    }
+
+    // 指定默认标签属性值
+    Person.defaultProps = {
+        age: 18,
+        sex: '不男不女'
+    }
+
+    ReactDOM.render(<Person name="张三" />, document.getElementById('test1'))
+</script>
+
+</html>
