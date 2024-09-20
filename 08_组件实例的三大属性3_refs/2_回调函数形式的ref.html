@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调函数形式的ref</title>
+</head>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<body>
+    <div id="test"></div>
+</body>
+
+<script type="text/babel">
+
+    class Demo extends React.Component {
+
+        // 展示左侧输入框的数据
+        showData1 = () => {
+            const { input1 } = this
+            alert(input1.value)
+        }
+
+        // 展示右侧输入框的数据
+        showData2 = () => {
+            const { input2 } = this
+            alert(input2.value)
+        }
+
+        render() {
+            return (
+                <div>
+                    <input ref={c => this.input1 = c} type="text" placeholder="点击按钮提示数据" />&nbsp;
+                    <button onClick={this.showData1}>点我</button>&nbsp;
+                    <input ref={c => this.input2 = c} onBlur={this.showData2} type="text" placeholder="失去焦点提示数据" />&nbsp;
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo a="1" b="2" />, document.getElementById('test'))
+</script>
+
+</html>
