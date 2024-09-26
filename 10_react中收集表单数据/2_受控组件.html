@@ -31,24 +31,26 @@
             alert(`我提及的用户名是: ${username},密码是: ${password}`)
         }
 
-        // 保存用户名到状态中
-        saveUserName = (event) => {
+        // 将用户名保存到状态中
+        saveUsernameData = (event) => {
             this.setState({
                 username: event.target.value
             })
         }
 
-        // 保存密码到状态中
-        savePassword = (event) => {
+        // 将密码保存到状态中
+        savePasswordData = (event) => {
             this.setState({
                 password: event.target.value
             })
         }
+
+
         render() {
             return (
                 <form onSubmit={this.handleSubmit}>
-                    用户: <input onChange={this.saveUserName} type="text" name="username" />
-                    密码: <input onChange={this.savePassword} type="password" name="password" />
+                    用户: <input onChange={this.saveUsernameData} type="text" name="username" />
+                    密码: <input onChange={this.savePasswordData} type="password" name="password" />
                     <button>提交</button>
                 </form>
             )
