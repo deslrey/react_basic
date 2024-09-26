@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引出生命周期</title>
+</head>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<body>
+    <div id="test"></div>
+</body>
+
+<script type="text/babel">
+    // 创建组件
+    class Life extends React.Component {
+
+        // 设置状态
+        state = {
+            opacity: 1
+        }
+
+        death = () => {
+            // 卸载组件
+            ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+        }
+
+        // 只调用一次,组件挂载到页面
+        componentDidMount() {
+            this.timer = setInterval(() => {
+                // 获取原状态
+                let { opacity } = this.state
+                opacity -= 0.1
+                if (opacity <= 0)
+                    opacity = 1
+                this.setState({ opacity })
+            }, 200);
+        }
+         
+        // 组件将要被卸载
+        componentWillUnmount() {
+            // 清除定时器
+            clearInterval(this.timer)
+        }
+
+        //调用2次,初始化渲染和状态更新
+        render() {
+            return (
+                < div >
+                    <h2 style={{ opacity: this.state.opacity }}>唱、跳、Rap、篮球</h2>
+                    <button onClick={this.death}>停止练习</button>
+                </div >
+            )
+        }
+
+    }
+    // 渲染组件
+    ReactDOM.render(<Life />, document.getElementById('test'))
+</script>
+
+</html>
