@@ -20,7 +20,7 @@
     class Count extends React.Component {
 
         // 构造器
-        constructor(){
+        constructor() {
             super()
             console.log('Count---constructor');
         }
@@ -33,14 +33,29 @@
         }
 
         // 组件挂载
-        componentDidMount(){
+        componentDidMount() {
             console.log('Count---componentDidMount');
         }
 
         // 组件将要挂载
-        componentWillMount(){
+        componentWillMount() {
             console.log('Count---componentWillMount');
+        }
 
+        // 组件更新钩子“阀门”
+        shouldComponentUpdate() {
+            console.log('Count---shouldComponentUpdate');
+            return true
+        }
+
+        // 组件将要更新钩子
+        componentWillUpdate() {
+            console.log('Count---componentWillUpdate');
+        }
+
+        // 组件更新完成钩子
+        componentDidUpdate() {
+            console.log('Count---componentDidUpdate');
         }
 
         // 组件渲染
