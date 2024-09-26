@@ -45,11 +45,15 @@
             console.log('Count---componentDidMount');
         }
 
+        // 若state的值在任何时候取决于props,那么可以使用 getDerivedStateFromProps
         static getDerivedStateFromProps(props, state) {
-            console.log('Count---getDerviedStateFromProps');
-            console.log('props--->', props);
-            console.log('state--->', state);
+            console.log('Count---getDerviedStateFromProps--->', props, state);
             return null
+        }
+
+        // 在更新之前获取快照
+        getSnapshotBeforeUpdate() {
+            console.log('Count---getDerviedStateFromProps');
         }
 
         // 组件更新钩子“阀门”
@@ -58,8 +62,8 @@
             return true
         }
         // 组件更新完成钩子
-        componentDidUpdate() {
-            console.log('Count---componentDidUpdate');
+        componentDidUpdate(preProps, preState, snapshotValue) {
+            console.log('Count---componentDidUpdate', preProps, preState, snapshotValue);
         }
 
         // 组件卸载钩子
