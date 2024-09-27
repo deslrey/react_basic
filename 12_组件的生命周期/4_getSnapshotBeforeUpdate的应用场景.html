@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getSnapshotBeforeUpdate的应用</title>
+
+    <style>
+        .list {
+            height: 150px;
+            width: 200px;
+            background-color: skyblue;
+            overflow: auto;
+        }
+
+        .news {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<body>
+    <div id="test"></div>
+</body>
+
+<script type="text/babel">
+    class NewsList extends React.Component {
+
+        state = { newsArrsy: [] }
+
+        componentDidMount() {
+            setInterval(() => {
+                const { newsArrsy } = this.state
+                const news = '新闻' + (newsArrsy.length + 1)
+                this.setState({ newsArrsy: [news, ...newsArrsy] })
+            }, 2000);
+        }
+
+        // 在更新之前获取快照
+        getSnapshotBeforeUpdate() {
+            return this.refs.list.scrollHeight
+        }
+
+        // 组件更新完成钩子
+        componentDidUpdate(preProps, preState, height) {
+            return this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+        }
+
+        render() {
+            return (
+                <div className='list' ref="list">
+                    {
+                        this.state.newsArrsy.map((n, index) => {
+                            return <div className='news' key={index}>{n}</div>
+                        })
+                    }
+
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<NewsList />, document.getElementById('test'))
+</script>
+
+</html>
