@@ -1,16 +1,21 @@
 import { Component } from 'react'
 
-import Hello from './components/Hello'
+import Header from './components/Header'
+import List from './components/List'
+import Footer from './components/Footer'
 
-import Welcome from './components/Welcome'
+import './App.css'
 
 export default class App extends Component {
 
     render() {
         return (
-            <div>
-                <Hello />
-                <Welcome />
+            <div className="todo-container">
+                <div className="todo-wrap">
+                    <Header />
+                    <List />
+                    <Footer />
+                </div>
             </div>
         )
     }
