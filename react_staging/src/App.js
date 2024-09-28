@@ -8,12 +8,21 @@ import './App.css'
 
 export default class App extends Component {
 
+    state = {
+        todos: [
+            { id: '001', name: '唱', done: true },
+            { id: '002', name: '跳', done: true },
+            { id: '003', name: 'Rap', done: false }
+        ]
+    }
+
     render() {
+        const { todos } = this.state
         return (
             <div className="todo-container">
                 <div className="todo-wrap">
                     <Header />
-                    <List />
+                    <List todos={todos} />
                     <Footer />
                 </div>
             </div>
