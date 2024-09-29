@@ -21,7 +21,7 @@ export default class Item extends Component {
     const { mouse } = this.state
 
     return (
-      <li  onMouseEnter={this.handlerMouse(true)} onMouseLeave={this.handlerMouse(false)}>
+      <li style={{ backgroundColor: mouse ? '#e0c3fc' : 'white' }} onMouseEnter={this.handlerMouse(true)} onMouseLeave={this.handlerMouse(false)}>
         <label>
           <input type="checkbox" defaultChecked={done} />
           <span>{name}</span>
