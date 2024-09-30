@@ -9,15 +9,16 @@ export default class List extends Component {
 
   static propTypes = {
     todos: PropTypes.array.isRequired,
-    updatedTodo: PropTypes.func.isRequired
+    updatedTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired
   }
 
   render() {
-    const { todos, updatedTodo } = this.props
+    const { todos, updatedTodo, deleteTodo } = this.props
     return (
       <ul className="todo-main">
         {todos.map(todo => {
-          return <Item key={todo.id} {...todo} updatedTodo={updatedTodo} />
+          return <Item key={todo.id} {...todo} updatedTodo={updatedTodo} deleteTodo={deleteTodo} />
         })}
 
       </ul>

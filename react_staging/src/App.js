@@ -26,7 +26,7 @@ export default class App extends Component {
         })
     }
 
-    // 用于处理一个todo对象
+    // 用于更新一个todo对象
     updatedTodo = (id, done) => {
         // 解构获取数据
         const { todos } = this.state
@@ -42,7 +42,19 @@ export default class App extends Component {
         this.setState({
             todos: newTodos
         })
+    }
 
+    // 用于删除一个todo对象
+    deleteTodo = (id) => {
+        const { todos } = this.state
+        const newTodos = todos.filter(todoObj => {
+            return todoObj.id !== id
+
+        })
+        // 更新状态数据
+        this.setState({
+            todos: newTodos
+        })
     }
 
     render() {
@@ -51,7 +63,7 @@ export default class App extends Component {
             <div className="todo-container">
                 <div className="todo-wrap">
                     <Header addTodo={this.addTodo} />
-                    <List todos={todos} updatedTodo={this.updatedTodo} />
+                    <List todos={todos} updatedTodo={this.updatedTodo} deleteTodo={this.deleteTodo} />
                     <Footer />
                 </div>
             </div>
